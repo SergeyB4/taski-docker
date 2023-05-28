@@ -23,7 +23,5 @@ RUN pip install -r requirements.txt --no-cache-dir
 # в текущую рабочую директорию образа – /app.
 COPY . .
 
-# При старте контейнера запустить сервер разработки.
-#CMD ["python", "manage.py", "runserver", "0:8000"] 
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi"] 
