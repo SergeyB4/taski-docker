@@ -19,8 +19,8 @@ services:
       - static:/backend_static
 
   frontend:
-    image: sergeyb4/taski_frontend
     env_file: .env
+    image: sergeyb4/taski_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
