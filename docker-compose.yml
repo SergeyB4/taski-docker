@@ -1,12 +1,11 @@
-# docker-compose.yml
 version: '3'
 
 volumes:
   pg_data:
- # static:
- # media:
-
+  static:
+ 
 services:
+
   db:
     image: postgres:13
     env_file: .env
@@ -16,20 +15,20 @@ services:
   backend:
     build: ./backend/
     env_file: .env
-    #volumes:
-    #  - static:/backend_static
+    volumes:
+      - static:/backend_static
 
   frontend:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
-   # volumes:
-    #  - static:/frontend_static
+    volumes:
+      - static:/frontend_static
 
   gateway:
     build: ./nginx/
     env_file: .env
-   # volumes:
-   #   - static:/staticfiles
+    volumes:
+      - static:/staticfiles
     ports:
       - 8000:80 
